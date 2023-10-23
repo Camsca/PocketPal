@@ -7,15 +7,11 @@ const deleteNote = require('./routes/deleteNote');
 
 app.use(express.json()); // Middleware for parsing JSON requests
  //middleware for serving HTML files
-app.get('/', (req, res) => {
-    res.send(__dirname + '/public/index.html');
-});
 
+app.use(express.static('public'));
 app.get('/notes', (req, res) => {
     res.sendFile(__dirname + '/public/notes.html');
 });
-
-app.use(express.static('public'));
  //Routes modules for API routes
  app.use('/api', getNotes);
  

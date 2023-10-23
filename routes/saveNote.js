@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const fs = require('fs');   
+const uuid = require('uuid');
 
 router.post('/notes', (req, res) => {
     console.log('POST request for notes');
@@ -13,7 +14,7 @@ router.post('/notes', (req, res) => {
             id: uuid.v4()
         };
         notes.push(newNote);
-        fs.writeFile('./db/db.json', JSON.stringify(notes), (err) => {
+        fs.writeFile('./db/db.json', JSON.stringify(notes,null, 2), (err) => {
             if (err) throw err;
             console.log('Note saved');
             res.json(notes);
