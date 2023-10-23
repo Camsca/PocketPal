@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const uuid = require('uuid');
 const getNotes = require('./routes/getNotes');
+const saveNote = require('./routes/saveNote');
 
 app.use(express.json()); // Middleware for parsing JSON requests
  //middleware for serving HTML files
@@ -16,6 +17,8 @@ app.get('/notes', (req, res) => {
 app.use(express.static('public'));
  //Routes modules for API routes
  app.use('/api', getNotes);
+ 
+ app.use('/api', saveNote);
 
 
 const port = process.env.PORT || 7777;
