@@ -13,7 +13,7 @@ app.get('/notes', (req, res) => {
     res.sendFile(__dirname + '/public/notes.html');
 });
 
-
+app.use(express.static('public'));
 
 const port = process.env.PORT || 7777;
 app.listen(port, () => {
