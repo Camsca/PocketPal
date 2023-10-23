@@ -1,10 +1,10 @@
 const express = require('express');
 const app = express();
-const fs = require('fs');
 const uuid = require('uuid');
+const getNotes = require('./routes/getNotes');
 
 app.use(express.json()); // Middleware for parsing JSON requests
-
+ //middleware for serving HTML files
 app.get('/', (req, res) => {
     res.send(__dirname + '/public/index.html');
 });
@@ -14,6 +14,9 @@ app.get('/notes', (req, res) => {
 });
 
 app.use(express.static('public'));
+ //Routes modules for API routes
+ app.use('/api', getNotes);
+
 
 const port = process.env.PORT || 7777;
 app.listen(port, () => {
